@@ -3,7 +3,7 @@ import getNestedObject from '../utils/get-nested-object';
 export function addPageMetaData(configuration: any, preview: boolean): void {
   if (preview) {
     // add new body comments
-    const pageMetaData: string = getNestedObject(configuration, ['_meta', 'endNodeSpan', 0]);
+    const pageMetaData: string = getNestedObject(configuration, ['page', '_meta', 'endNodeSpan', 0]);
     if (pageMetaData) {
       // remove comments from page meta-data element, if existing
       let pageMetaDataElm: HTMLElement = document.getElementById('hst-page-meta-data');
@@ -17,9 +17,11 @@ export function addPageMetaData(configuration: any, preview: boolean): void {
         document.body.appendChild(pageMetaDataElm);
       }
 
-      for (let i = 0; i < configuration._meta.endNodeSpan.length; i++) {
-        pageMetaDataElm.insertAdjacentHTML('beforeend', configuration._meta.endNodeSpan[i].data);
+      for (let i = 0; i < configuration.page._meta.endNodeSpan.length; i++) {
+        pageMetaDataElm.insertAdjacentHTML('beforeend', configuration.page._meta.endNodeSpan[i].data);
       }
+    } else {
+      console.error('BRE SDK: Failed to find Page Meta Data');
     }
   }
 }
@@ -57,5 +59,7 @@ function addComment(element: HTMLElement, position: InsertPosition, comment: str
     } catch (e) {
       console.log(`Error creating HTML comment: ${e}, for data: ${comment}`);
     }
+  } else {
+    console.log(`Error in addComment. element: ${element}, comment: ${comment}`);
   }
 }

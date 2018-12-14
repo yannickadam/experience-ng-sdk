@@ -1,6 +1,8 @@
+BRE CMS COMPONENT
 <bre-base-component *ngIf="renderComponent" [configuration]="configuration" [renderComponent]="renderComponent"></bre-base-component>
 <ng-container *ngIf="!renderComponent" [ngSwitch]="configuration?.type">
-  <bre-container *ngSwitchCase="'CONTAINER_COMPONENT'" [configuration]="configuration"></bre-container>
-  <bre-base-component *ngSwitchCase="'CONTAINER_ITEM_COMPONENT'" [configuration]="configuration"></bre-base-component>
-  <bre-cms-component *ngSwitchDefault [configuration]="configuration"></bre-cms-component>
+  Goufou
+  <bre-container *ngSwitchCase="'CONTAINER_COMPONENT'" [configuration]="configuration">1</bre-container>
+  <bre-base-component *ngSwitchCase="'CONTAINER_ITEM_COMPONENT'" [configuration]="configuration">2</bre-base-component>
+  <bre-cms-component *ngSwitchDefault [configuration]="configuration">3</bre-cms-component>
 </ng-container>
